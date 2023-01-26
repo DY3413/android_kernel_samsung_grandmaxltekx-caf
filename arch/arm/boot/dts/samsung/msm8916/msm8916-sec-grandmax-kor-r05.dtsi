@@ -37,6 +37,12 @@
 		status = "ok";
 	};
 
+	sec_led{
+		status = "ok";
+		compatible = "sec_led";
+		gpios = <&msm_gpio 60 0>;
+	};
+
 	i2c@78b9000 { /* BLSP1 QUP5 */
 		status = "ok";
 		qcom,scl-gpio = <&msm_gpio 19 0>;
@@ -76,8 +82,8 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		sec-fuelgauge@35{
-			compatible = "sec-fuelgauge,i2c";
+		rt5033-fuelgauge@35{
+			compatible = "rt5033-fuelgauge,i2c";
 			reg = <0x35>;
 			interrupt-parent = <&msm_gpio>;
 			fuelgauge,irqf = "IRQF_TRIGGER_FALLING + IRQF_ONESHOT + IRQF_NO_SUSPEND";
@@ -146,7 +152,7 @@
 
 			rt5033_buck1 {
 				compatible = "richtek,rt5033-dcdc1";
-				regulator-name = "CAM_SENSOR_CORE_1.25V"; /* change name by yourself */
+				regulator-name = "CAM_SENSOR_CORE_1.2V"; /* change name by yourself */
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>; /* max == min then apply_uV = 1 */
 				/* regulator-microvolt-offset = < >; optional*/
@@ -166,7 +172,7 @@
 				strobe_timeout = <544>;
 				torch_current = <63>;
 				lv_protection = <3000>;
-				mid_level = <4400>;
+				mid_level = <4800>;
 				rt5033,led1-gpio = <&msm_gpio 34 0x00>;
 				rt5033,led2-gpio = <&msm_gpio 36 0x00>;
 				pinctrl-names = "fled_default","fled_sleep";
@@ -469,7 +475,9 @@
 	};
 };
 
-#include "dsi-panel-s6d2aa0x-hd-video.dtsi"
+
+#include "../../../../../../drivers/video/msm/mdss/samsung/S6D2AA0X62_LPM053A250A/dsi_panel_S6D7AA0X_hd_video.dtsi"
+
 
 &mdss_mdp {
 	qcom,mdss-pref-prim-intf = "dsi";
@@ -478,10 +486,6 @@
 &pmx_mdss {
 	qcom,num-grp-pins = <2>;
 	qcom,pins = <&gp 25>, <&gp 16>;
-};
-
-&pmx_lcd_esd_det {
-	qcom,pins = <&gp 69>;
 };
 
 &pmx_i2c_isl98611 {
@@ -501,6 +505,35 @@
 	qcom,platform-reset-gpio = <&msm_gpio 25 0>;
 	qcom,platform-enable-gpio = <&msm_gpio 16 0>;
 };
+
+
+&soc {
+	i2c_24: i2c@24 {
+		cell-index = <24>;
+		compatible = "i2c-gpio";
+		i2c-gpio-scl = <&msm_gpio 102  0x00>; /*scl gpio*/
+		i2c-gpio-sda = <&msm_gpio 101 0x00>;  /*sda gpio*/
+		i2c-gpio,delay-us = <4>;
+		isl98611@29 {
+			compatible = "intersil,isl98611";
+			reg = <0x29>;
+			backlight{
+				compatible = "intersil,isl98611-backlight";
+				backlight-ic-name = "ISL98611IIZ-T";
+				backlight-en-gpio = <&msm_gpio 98 0x00>;
+				backlight-panel-enp-gpio = <&msm_gpio 97 0x00>;
+				backlight-panel-enn-gpio = <&msm_gpio 120 0x00>;
+				backlight-ic-tuning = [
+					13	C0
+					12	3F
+					16	A5
+					17	8D
+				];
+			};
+		};
+	};
+};
+
 
 &qcom_tzlog {
 	status = "okay";

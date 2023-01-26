@@ -9,7 +9,7 @@ obj-$(CONFIG_SAMSUNG_DEBUG_DISPLAY) += dlog.o
 # panel directory make file
 #
 
-# GrandMax SWA panel
+# GrandMax panel
 obj-$(CONFIG_PANEL_S6D2AA0X_LPM053A250A_HD) += S6D2AA0X62_LPM053A250A/
 
 # K, Kcat6 panel

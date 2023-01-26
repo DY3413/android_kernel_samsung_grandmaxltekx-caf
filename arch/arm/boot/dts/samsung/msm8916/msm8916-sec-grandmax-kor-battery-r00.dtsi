@@ -16,7 +16,7 @@
 		compatible = "samsung,sec-battery";
 		battery,vendor = "SDI SDI";
 		battery,charger_name = "rt5033-charger";
-		battery,fuelgauge_name = "sec-fuelgauge";
+		battery,fuelgauge_name = "rt5033-fuelgauge";
 		battery,technology = <2>; /* POWER_SUPPLY_TECHNOLOGY_LION */
 
 		battery,chip_vendor = "QCOM";
@@ -61,7 +61,7 @@
 		battery,temp_low_threshold_lpm = <(-50)>;
 		battery,temp_low_recovery_lpm = <0>;
 		battery,full_check_type = <7>; /* SEC_BATTERY_FULLCHARGED_CHGPSY */
-		battery,full_check_type_2nd = <3>; /* SEC_BATTERY_FULLCHARGED_TIME */
+		battery,full_check_type_2nd = <7>; /* SEC_BATTERY_FULLCHARGED_CHGPSY */
 		battery,full_check_count = <1>;
 		battery,chg_gpio_full_check = <0>;
 		battery,chg_polarity_full_check = <1>;
@@ -92,14 +92,14 @@
 			battery,chg_polarity_en = <0>;
 			battery,chg_gpio_status = <0>;
 			battery,chg_polarity_status = <0>;
-			battery,chg_float_voltage = <4400>;
+			battery,chg_float_voltage = <4380>;
 			battery,ovp_uvlo_check_type = <3>; /* SEC_BATTERY_OVP_UVLO_CHGPOLLING */
 			battery,full_check_type = <2>; /* SEC_BATTERY_FULLCHARGED_FG_CURRENT */
 
 			battery,input_current_limit = <1500 500 500 1500 500 1000 1000 500 500 1000 700 1500 1500 500 1000 500 700 1000 500 1000 1000 500 500>;
 			battery,fast_charging_current = <1500 0 500 1500 500 1000 1000 500 0 1000 700 1500 1500 (-1) 1000 500 700 1000 500 1000 1500 0 0>;
-			battery,full_check_current_1st = <150 0 150 150 150 150 150 150 0 150 150 150 150 0 150 150 150 150 150 150 150 0 0>;
-			battery,full_check_current_2nd = <2400 0 2400 2400 2400 2400 2400 2400 0 2400 2400 2400 2400 0 2400 2400 2400 2400 2400 2400 2400 0 0>;
+			battery,full_check_current_1st = <200 0 200 200 200 200 200 200 0 200 200 200 200 0 200 200 200 200 200 200 200 0 0>;
+			battery,full_check_current_2nd = <150 0 150 150 150 150 150 150 0 150 150 150 150 0 150 150 150 150 150 150 150 0 0>;
 		};
 	};
 
@@ -107,32 +107,68 @@
 				battery,id = <0>; /* -1 means auto, detected by F/G */
 				battery0,battery_type = <4400>; /* 4200 4350 4400 */
 				battery0,vg_comp_interpolation_order  = <1 1>; /* necessary */
-				battery0,vg_comp_idle_size  = <4 3>; /* necessary */
-				battery0,vg_comp_idle_data  = <3200	(-1)		25	33	15	95
-                                              3735	(-1)		25	33	15	95
-                                              4021	(-1)		25	33	15	95
-                                              4218	(-1)		25	33	15	95
-                                              3200	0		65	55	60	55
-                                              3735	0		50	45	60	100
-                                              4021	0		90	80	60	95
-                                              4218	0		90	255	60	95
-                                              3200	450		60	70	80	65
-                                              3735	450		60	55	80	65
-                                              4021	450		155	200	80	65
-                                              4218	450		255	255	80	65>;
-				battery0,vg_comp_normal_size  = <4 3>; /* necessary */
-				battery0,vg_comp_normal_data  = <3200	(-1)		25	33	15	95
-                                              3735	(-1)		25	33	15	95
-                                              4021	(-1)		25	33	15	95
-                                              4218	(-1)		25	33	15	95
-                                              3200	0		65	55	60	55
-                                              3735	0		50	45	60	100
-                                              4021	0		90	80	60	95
-                                              4218	0		90	255	60	95
-                                              3200	450		60	70	80	65
-                                              3735	450		60	55	80	65
-                                              4021	450		155	200	80	65
-                                              4218	450		255	255	80	65>;
+				battery0,vg_comp_idle_size  = <10 3>; /* necessary */
+				battery0,vg_comp_idle_data  = <3200	(-1)	65	32	43	30
+                                              3688	(-1)	65	32	43	30
+                                              3735	(-1)	50	22	43	60
+                                              3780	(-1)	50	22	43	60
+                                              3810	(-1)	50	22	43	60
+                                              3853	(-1)	50	22	43	60
+                                              3926	(-1)	50	10	43	60
+                                              4021	(-1)	90	10	43	65
+                                              4115	(-1)	90	10	43	65
+                                              4218	(-1)	90	255	43	70
+                                              3200	150	65	55	60	55
+                                              3688	150	65	55	60	55
+                                              3735	150	50	45	50	100
+                                              3780	150	50	45	50	100
+                                              3810	150	50	45	50	100
+                                              3853	150	50	45	60	100
+                                              3926	150	50	45	60	100
+                                              4021	150	90	80	60	95
+                                              4115	150	90	80	45	95
+                                              4218	150	90	255	20	95
+                                              3200	400	60	70	80	65
+                                              3688	400	60	70	80	65
+                                              3735	400	60	55	80	65
+                                              3780	400	60	55	80	65
+                                              3810	400	60	55	80	65
+                                              3853	400	60	55	80	65
+                                              3926	400	60	55	80	65
+                                              4021	400	155	200	80	65
+                                              4115	400	155	200	80	65
+                                              4218	400	255	255	80	65>;
+				battery0,vg_comp_normal_size  = <10 3>; /* necessary */
+				battery0,vg_comp_normal_data  =<3200	(-1)	65	32	43	30
+                                              3688	(-1)	65	32	43	30
+                                              3735	(-1)	50	22	43	60
+                                              3780	(-1)	50	22	43	60
+                                              3810	(-1)	50	22	43	60
+                                              3853	(-1)	50	22	43	60
+                                              3926	(-1)	50	10	43	60
+                                              4021	(-1)	90	10	43	65
+                                              4115	(-1)	90	10	43	65
+                                              4218	(-1)	90	255	43	70
+                                              3200	150	65	55	60	55
+                                              3688	150	65	55	60	55
+                                              3735	150	50	45	50	100
+                                              3780	150	50	45	50	100
+                                              3810	150	50	45	50	100
+                                              3853	150	50	45	60	100
+                                              3926	150	50	45	60	100
+                                              4021	150	90	80	60	95
+                                              4115	150	90	80	45	95
+                                              4218	150	90	255	20	95
+                                              3200	400	60	70	80	65
+                                              3688	400	60	70	80	65
+                                              3735	400	60	55	80	65
+                                              3780	400	60	55	80	65
+                                              3810	400	60	55	80	65
+                                              3853	400	60	55	80	65
+                                              3926	400	60	55	80	65
+                                              4021	400	155	200	80	65
+                                              4115	400	155	200	80	65
+                                              4218	400	255	255	80	65>;
 		battery0,special_case = <0>;
 		battery0,offset_interpolation_order = <2 2>; /* necessary */
 		battery0,offset_charging_size = <2 1>; /* m x n, m: volt or soc, n : temp */
@@ -151,7 +187,7 @@
 						20 250 (-10)
 						100 250 0
 						500 250 0
-						1030 250 (-12)>;
+						1030 250 0>;
 		battery0,crate_idle_thres = <255>;
 	};
 };

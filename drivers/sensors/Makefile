@@ -22,3 +22,4 @@ obj-$(CONFIG_SENSORS_SX9500_WIFI)   +=sx9500_wifi.o
 obj-$(CONFIG_SENSORS_K303C)	+= k303c_acc.o k303c_mag.o
 obj-$(CONFIG_SENSORS_BMA2X2)	+= bma2x2.o
 obj-$(CONFIG_SENSORS_BMM050)	+= bmm050_driver.o bmm050.o
+obj-$(CONFIG_SENSORS_AK09911C)	+= ak09911c.o
