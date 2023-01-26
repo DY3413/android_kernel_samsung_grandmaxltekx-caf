@@ -511,6 +511,13 @@ config MACH_GRANDMAX_SWA_OPEN
 	help
 	  Support for Samsung GRANDMAX SWA device.
 
+config MACH_GRANDMAX_KOR_OPEN
+	depends on SEC_GRANDMAX_PROJECT
+	default n
+	bool "Samsung GRANDMAX Korea Open"
+	help
+	  Support for Samsung GRANDMAX Korea Open device.
+
 config SEC_J1_PROJECT
 	depends on ARCH_MSM8916
 	default n
