@@ -83,6 +83,7 @@ ifeq ($(CONFIG_SEC_GRANDMAX_PROJECT),y)
 	else ifeq ($(CONFIG_MACH_GRANDMAX_KOR_OPEN),y)
 		dtb-y += msm8916-sec-grandmax-kor-r04.dtb
 		dtb-y += msm8916-sec-grandmax-kor-r05.dtb
+	endif
 endif
 
 ifeq ($(CONFIG_SEC_A3_EUR_PROJECT),y)
