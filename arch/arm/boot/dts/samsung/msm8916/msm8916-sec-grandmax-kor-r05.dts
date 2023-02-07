@@ -25,6 +25,18 @@
         /*parm1)[31:24]platform_id [23:16]qc_hw_id [15:8]national code [7:0] operator, param2)SEC hw-rev*/
 };
 
+&modem_adsp_mem {
+       reg = <0x0 0x86800000 0x0 0x05a00000>;
+};
+
+&peripheral_mem {
+       reg = <0x0 0x8c200000 0x0 0x0600000>;
+};
+
+&venus_mem {
+       reg = <0x0 0x8C800000 0x0 0x0500000>;
+};
+
 /*overwrite s2 cpr voltage for model variant*/
 &apc_vreg_corner {
         qcom,cpr-voltage-ceiling = <1050000 1150000 1350000>;
