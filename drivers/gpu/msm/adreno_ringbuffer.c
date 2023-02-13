@@ -247,8 +247,10 @@ int adreno_ringbuffer_read_pm4_ucode(struct kgsl_device *device)
 		ret = _load_firmware(device,
 			adreno_dev->gpucore->pm4fw_name, &ptr, &len);
 
-		if (ret)
-			goto err;
+		if (ret) {
+			if((ret == -EAGAIN) && (system_state == SYSTEM_POWER_OFF))
+				goto err;
+		}
 
 		/* PM4 size is 3 dword aligned plus 1 dword of version */
 		if (len % ((sizeof(uint32_t) * 3)) != sizeof(uint32_t)) {
@@ -306,8 +308,10 @@ int adreno_ringbuffer_read_pfp_ucode(struct kgsl_device *device)
 
 		ret = _load_firmware(device,
 			adreno_dev->gpucore->pfpfw_name, &ptr, &len);
-		if (ret)
-			goto err;
+		if (ret) {
+			if((ret == -EAGAIN) && (system_state == SYSTEM_POWER_OFF))
+				goto err;
+		}
 
 		/* PFP size shold be dword aligned */
 		if (len % sizeof(uint32_t) != 0) {

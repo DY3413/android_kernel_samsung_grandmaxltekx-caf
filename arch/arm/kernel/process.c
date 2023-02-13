@@ -363,6 +363,7 @@ static void show_data(unsigned long addr, int nbytes, const char *name)
 
 static void show_extra_register_data(struct pt_regs *regs, int nbytes)
 {
+<<<<<<< HEAD
 	show_data(regs->ARM_pc - nbytes, nbytes * 2, "PC");
 	show_data(regs->ARM_lr - nbytes, nbytes * 2, "LR");
 	show_data(regs->ARM_sp - nbytes, nbytes * 2, "SP");
@@ -379,6 +380,49 @@ static void show_extra_register_data(struct pt_regs *regs, int nbytes)
 	show_data(regs->ARM_r8 - nbytes, nbytes * 2, "R8");
 	show_data(regs->ARM_r9 - nbytes, nbytes * 2, "R9");
 	show_data(regs->ARM_r10 - nbytes, nbytes * 2, "R10");
+=======
+	mm_segment_t fs;
+	unsigned long is_user;
+
+	fs = get_fs();
+	is_user = user_mode(regs);
+
+	set_fs(KERNEL_DS);
+	if (!is_user || regs->ARM_pc < TASK_SIZE)
+		show_data(regs->ARM_pc - nbytes, nbytes * 2, "PC");
+	if (!is_user || regs->ARM_lr < TASK_SIZE)
+		show_data(regs->ARM_lr - nbytes, nbytes * 2, "LR");
+	if (!is_user || regs->ARM_sp < TASK_SIZE)
+		show_data(regs->ARM_sp - nbytes, nbytes * 2, "SP");
+	if (!is_user || regs->ARM_ip < TASK_SIZE)
+		show_data(regs->ARM_ip - nbytes, nbytes * 2, "IP");
+	if (!is_user || regs->ARM_fp < TASK_SIZE)
+		show_data(regs->ARM_fp - nbytes, nbytes * 2, "FP");
+	if (!is_user || regs->ARM_r0 < TASK_SIZE)
+		show_data(regs->ARM_r0 - nbytes, nbytes * 2, "R0");
+	if (!is_user || regs->ARM_r1 < TASK_SIZE)
+		show_data(regs->ARM_r1 - nbytes, nbytes * 2, "R1");
+	if (!is_user || regs->ARM_r2 < TASK_SIZE)
+		show_data(regs->ARM_r2 - nbytes, nbytes * 2, "R2");
+	if (!is_user || regs->ARM_r3 < TASK_SIZE)
+		show_data(regs->ARM_r3 - nbytes, nbytes * 2, "R3");
+	if (!is_user || regs->ARM_r4 < TASK_SIZE)
+		show_data(regs->ARM_r4 - nbytes, nbytes * 2, "R4");
+	if (!is_user || regs->ARM_r5 < TASK_SIZE)
+		show_data(regs->ARM_r5 - nbytes, nbytes * 2, "R5");
+	if (!is_user || regs->ARM_r6 < TASK_SIZE)
+		show_data(regs->ARM_r6 - nbytes, nbytes * 2, "R6");
+	if (!is_user || regs->ARM_r7 < TASK_SIZE)
+		show_data(regs->ARM_r7 - nbytes, nbytes * 2, "R7");
+	if (!is_user || regs->ARM_r8 < TASK_SIZE)
+		show_data(regs->ARM_r8 - nbytes, nbytes * 2, "R8");
+	if (!is_user || regs->ARM_r9 < TASK_SIZE)
+		show_data(regs->ARM_r9 - nbytes, nbytes * 2, "R9");
+	if (!is_user || regs->ARM_r10 < TASK_SIZE)
+		show_data(regs->ARM_r10 - nbytes, nbytes * 2, "R10");
+
+	set_fs(fs);
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 }
 
 void __show_regs(struct pt_regs *regs)

@@ -902,6 +902,19 @@ config TOUCHSCREEN_ST1232
 	  To compile this driver as a module, choose M here: the
 	  module will be called st1232_ts.
 
+config TOUCHSCREEN_MELFAS_MMS438
+	tristate "melfas MMS438 touchscreen controllers"
+	depends on I2C
+	help
+	  Say Y here if you want to support melfas MMS438
+	  touchscreen controller.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called melfas_ts.
+
+
 config TOUCHSCREEN_STMPE
 	tristate "STMicroelectronics STMPE touchscreens"
 	depends on MFD_STMPE
@@ -1020,8 +1033,6 @@ config TOUCHSCREEN_GT9XX
 
           If unsure, say N.
 
-source "drivers/input/touchscreen/gt9xx/Kconfig"
-
 config TOUCHSCREEN_BU21150
 	tristate "JDI AFE BU21150"
 	depends on SPI_MASTER
@@ -1044,4 +1055,19 @@ config INPUT_MT_WRAPPER
 
 	  If unsure, say N.
 
+config TOUCH_KEY_LED
+	tristate "Touch Key Led"
+	help
+	  This enables support for Touch Key Led.
+
+	  Say Y here if you want to enable the driver.
+
+	  If unsure, say N.
+
+source "drivers/input/touchscreen/gt9xx/Kconfig"
+source "drivers/input/touchscreen/imagis_core3/Kconfig"
+source "drivers/input/touchscreen/imagis_30xxc/Kconfig"
+source "drivers/input/touchscreen/zinitix/Kconfig"
+source "drivers/input/touchscreen/zinitix_j1/Kconfig"
+source "drivers/input/touchscreen/imagis_o1/Kconfig"
 endif

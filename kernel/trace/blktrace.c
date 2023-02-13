@@ -1840,6 +1840,7 @@ void blk_fill_rwbs(char *rwbs, u32 rw, int bytes)
 	if (rw & REQ_FLUSH)
 		rwbs[i++] = 'F';
 
+<<<<<<< HEAD
 	if (rw & WRITE)
 		rwbs[i++] = 'W';
 	else if (rw & REQ_DISCARD)
@@ -1847,6 +1848,15 @@ void blk_fill_rwbs(char *rwbs, u32 rw, int bytes)
 	else if (bytes)
 		rwbs[i++] = 'R';
 	else
+=======
+        if (rw & REQ_DISCARD)
+                rwbs[i++] = 'D';
+        else if (rw & WRITE)
+                rwbs[i++] = 'W';
+        else if (bytes)
+                rwbs[i++] = 'R';
+        else
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 		rwbs[i++] = 'N';
 
 	if (rw & REQ_FUA)

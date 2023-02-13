@@ -11,6 +11,10 @@
 #include <linux/decompress/unxz.h>
 #include <linux/decompress/inflate.h>
 #include <linux/decompress/unlzo.h>
+<<<<<<< HEAD
+=======
+#include <linux/decompress/unlz4.h>
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 #include <linux/types.h>
 #include <linux/string.h>
@@ -32,6 +36,13 @@
 # define unlzo NULL
 #endif
 
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_DECOMPRESS_LZ4
+# define unlz4 NULL
+#endif
+
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 struct compress_format {
 	unsigned char magic[2];
 	const char *name;
@@ -45,6 +56,10 @@ static const struct compress_format compressed_formats[] __initconst = {
 	{ {0x5d, 0x00}, "lzma", unlzma },
 	{ {0xfd, 0x37}, "xz", unxz },
 	{ {0x89, 0x4c}, "lzo", unlzo },
+<<<<<<< HEAD
+=======
+	{ {0x02, 0x21}, "lz4", unlz4 },
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 	{ {0, 0}, NULL, NULL }
 };
 

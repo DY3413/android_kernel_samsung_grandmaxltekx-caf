@@ -613,6 +613,10 @@ static int mdss_mdp_map_buffer(struct mdss_mdp_img_data *data)
 {
 	int ret = -EINVAL;
 	struct ion_client *iclient = mdss_get_ionclient();
+<<<<<<< HEAD
+=======
+	struct mdss_data_type *mdata = mdss_mdp_get_mdata();
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 	if (data->addr && data->len)
 		return 0;
@@ -625,6 +629,12 @@ static int mdss_mdp_map_buffer(struct mdss_mdp_img_data *data)
 			else
 				domain = MDSS_IOMMU_DOMAIN_UNSECURE;
 
+<<<<<<< HEAD
+=======
+			if (domain == MDSS_IOMMU_DOMAIN_SECURE)
+				__mdss_restore_sec_cfg(mdata);
+
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 			ret = ion_map_iommu(iclient, data->srcp_ihdl,
 						mdss_get_iommu_domain(domain),
 						0, SZ_4K, 0, &data->addr,
@@ -715,7 +725,15 @@ void mdss_mdp_data_free(struct mdss_mdp_data *data)
 	int i;
 
 	for (i = 0; i < data->num_planes && data->p[i].len; i++)
+<<<<<<< HEAD
 		mdss_mdp_put_img(&data->p[i]);
+=======
+	{
+		mdss_iommu_ctrl(1);
+		mdss_mdp_put_img(&data->p[i]);
+		mdss_iommu_ctrl(0);
+	}
+>>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 	data->num_planes = 0;
 }

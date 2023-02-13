@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2013-2015, The Linux Foundation. All rights reserved
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -79,7 +79,7 @@ int msm_audio_ion_alloc(const char *name, struct ion_client **client,
 				err_ion_ptr = PTR_ERR((int *)(*handle));
 			pr_err("%s:ION alloc fail err ptr=%ld, smmu_enabled=%d\n",
 			__func__, err_ion_ptr, msm_audio_ion_data.smmu_enabled);
-			rc = -ENOMEM;
+				rc = -ENOMEM;
 			goto err_ion_client;
 		}
 	} else {

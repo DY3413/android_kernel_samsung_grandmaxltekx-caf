@@ -61,6 +61,8 @@ static int mmc_queue_thread(void *d)
 
 	current->flags |= PF_MEMALLOC;
 
+	set_wake_up_idle(true);
+
 	down(&mq->thread_sem);
 	do {
 		struct request *req = NULL;
