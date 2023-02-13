@@ -1345,8 +1345,6 @@ static const struct file_operations proc_pid_sched_operations = {
 
 #endif
 
-<<<<<<< HEAD
-=======
 #ifdef CONFIG_SCHED_HMP
 
 /*
@@ -1416,7 +1414,6 @@ static const struct file_operations proc_pid_sched_init_task_load_operations = {
 
 #endif	/* CONFIG_SCHED_HMP */
 
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 #ifdef CONFIG_SCHED_AUTOGROUP
 /*
  * Print out autogroup related information:
@@ -2766,12 +2763,9 @@ static const struct pid_entry tgid_base_stuff[] = {
 	ONE("status",     S_IRUGO, proc_pid_status),
 	ONE("personality", S_IRUGO, proc_pid_personality),
 	INF("limits",	  S_IRUGO, proc_pid_limits),
-<<<<<<< HEAD
-=======
 #ifdef CONFIG_SCHED_HMP
 	REG("sched_init_task_load",      S_IRUGO|S_IWUSR, proc_pid_sched_init_task_load_operations),
 #endif
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 #ifdef CONFIG_SCHED_DEBUG
 	REG("sched",      S_IRUGO|S_IWUSR, proc_pid_sched_operations),
 #endif

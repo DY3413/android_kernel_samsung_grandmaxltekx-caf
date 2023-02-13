@@ -18,14 +18,10 @@
 
 bool selinux_is_enabled(void)
 {
-<<<<<<< HEAD
-	return selinux_enabled;
-=======
 #ifdef CONFIG_ALWAYS_ENFORCE
 	return true;
 #else
 	return selinux_enabled;
 #endif
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 }
 EXPORT_SYMBOL_GPL(selinux_is_enabled);

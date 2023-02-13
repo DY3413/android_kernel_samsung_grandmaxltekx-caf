@@ -2,15 +2,12 @@
 # Makefile for building the SELinux module as part of the kernel tree.
 #
 
-<<<<<<< HEAD
-=======
 ifeq ($(TARGET_BUILD_VARIANT), user)
 ifeq ($(SEC_BUILD_OPTION_PRODUCT_SHIP),true)
 EXTRA_CFLAGS += -DCONFIG_ALWAYS_ENFORCE=true
 endif
 endif
 
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 obj-$(CONFIG_SECURITY_SELINUX) := selinux.o
 
 selinux-y := avc.o hooks.o selinuxfs.o netlink.o nlmsgtab.o netif.o \

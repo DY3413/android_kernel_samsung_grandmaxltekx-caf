@@ -58,15 +58,11 @@ struct page *selinux_kernel_status_page(void)
 
 			status->version = SELINUX_KERNEL_STATUS_VERSION;
 			status->sequence = 0;
-<<<<<<< HEAD
-			status->enforcing = selinux_enforcing;
-=======
 #ifdef CONFIG_ALWAYS_ENFORCE
 			status->enforcing = 1;
 #else
 			status->enforcing = selinux_enforcing;
 #endif
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 			/*
 			 * NOTE: the next policyload event shall set
 			 * a positive value on the status->policyload,

@@ -1265,8 +1265,6 @@ static int check_unsafe_exec(struct linux_binprm *bprm)
 	return res;
 }
 
-<<<<<<< HEAD
-=======
 static void bprm_fill_uid(struct linux_binprm *bprm)
 {
 	struct inode *inode;
@@ -1314,7 +1312,6 @@ static void bprm_fill_uid(struct linux_binprm *bprm)
 	}
 }
 
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 /* 
  * Fill the binprm structure from the inode. 
  * Check permissions, then read the first 128 (BINPRM_BUF_SIZE) bytes
@@ -1323,49 +1320,12 @@ static void bprm_fill_uid(struct linux_binprm *bprm)
  */
 int prepare_binprm(struct linux_binprm *bprm)
 {
-<<<<<<< HEAD
-	umode_t mode;
-	struct inode * inode = file_inode(bprm->file);
-	int retval;
-
-	mode = inode->i_mode;
-	if (bprm->file->f_op == NULL)
-		return -EACCES;
-
-	/* clear any previous set[ug]id data from a previous binary */
-	bprm->cred->euid = current_euid();
-	bprm->cred->egid = current_egid();
-
-	if (!(bprm->file->f_path.mnt->mnt_flags & MNT_NOSUID) &&
-	    !current->no_new_privs &&
-	    kuid_has_mapping(bprm->cred->user_ns, inode->i_uid) &&
-	    kgid_has_mapping(bprm->cred->user_ns, inode->i_gid)) {
-		/* Set-uid? */
-		if (mode & S_ISUID) {
-			bprm->per_clear |= PER_CLEAR_ON_SETID;
-			bprm->cred->euid = inode->i_uid;
-		}
-
-		/* Set-gid? */
-		/*
-		 * If setgid is set but no group execute bit then this
-		 * is a candidate for mandatory locking, not a setgid
-		 * executable.
-		 */
-		if ((mode & (S_ISGID | S_IXGRP)) == (S_ISGID | S_IXGRP)) {
-			bprm->per_clear |= PER_CLEAR_ON_SETID;
-			bprm->cred->egid = inode->i_gid;
-		}
-	}
-
-=======
 	int retval;
 
 	if (bprm->file->f_op == NULL)
 		return -EACCES;
 
 	bprm_fill_uid(bprm);
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 	/* fill in binprm security blob */
 	retval = security_bprm_set_creds(bprm);
 	if (retval)
@@ -1510,8 +1470,6 @@ int search_binary_handler(struct linux_binprm *bprm)
 
 EXPORT_SYMBOL(search_binary_handler);
 
-<<<<<<< HEAD
-=======
 #if defined CONFIG_SEC_RESTRICT_FORK
 #if defined CONFIG_SEC_RESTRICT_ROOTING_LOG
 #define PRINT_LOG(...)	printk(KERN_ERR __VA_ARGS__)
@@ -1637,7 +1595,6 @@ out:
 }
 #endif	/* End of CONFIG_SEC_RESTRICT_FORK */
 
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 /*
  * sys_execve() executes a new program.
  */
@@ -1875,8 +1832,6 @@ SYSCALL_DEFINE3(execve,
 	struct filename *path = getname(filename);
 	int error = PTR_ERR(path);
 	if (!IS_ERR(path)) {
-<<<<<<< HEAD
-=======
 
 #if defined CONFIG_SEC_RESTRICT_FORK
 		if(CHECK_ROOT_UID(current)){
@@ -1890,7 +1845,6 @@ SYSCALL_DEFINE3(execve,
 		}
 #endif	// End of CONFIG_SEC_RESTRICT_FORK
 
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 		error = do_execve(path->name, argv, envp);
 		putname(path);
 	}

@@ -637,11 +637,7 @@ char *yytext;
 #include "srcpos.h"
 #include "dtc-parser.tab.h"
 
-<<<<<<< HEAD
-YYLTYPE yylloc;
-=======
 extern YYLTYPE yylloc;
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 /* CAUTION: this will stop working if we ever use yyless() or yyunput() */
 #define	YY_USER_ACTION \

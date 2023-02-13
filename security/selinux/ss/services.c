@@ -734,13 +734,10 @@ out:
 	kfree(o);
 	kfree(n);
 	kfree(t);
-<<<<<<< HEAD
-=======
 	
 #ifdef CONFIG_ALWAYS_ENFORCE
 	selinux_enforcing = 1;
 #endif
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 	if (!selinux_enforcing)
 		return 0;
@@ -1364,12 +1361,9 @@ out:
 	kfree(s);
 	kfree(t);
 	kfree(n);
-<<<<<<< HEAD
-=======
 #ifdef CONFIG_ALWAYS_ENFORCE
         selinux_enforcing = 1;
 #endif
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 	if (!selinux_enforcing)
 		return 0;
 	return -EACCES;
@@ -1660,12 +1654,9 @@ static inline int convert_context_handle_invalid_context(struct context *context
 {
 	char *s;
 	u32 len;
-<<<<<<< HEAD
-=======
 #ifdef CONFIG_ALWAYS_ENFORCE
         selinux_enforcing = 1;
 #endif
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 	if (selinux_enforcing)
 		return -EINVAL;
@@ -2357,10 +2348,7 @@ int security_fs_use(
 {
 	int rc = 0;
 	struct ocontext *c;
-<<<<<<< HEAD
-=======
 	u32 tmpsid;
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 	read_lock(&policy_rwlock);
 
@@ -2375,12 +2363,8 @@ int security_fs_use(
 		*behavior = c->v.behavior;
 		if (!c->sid[0]) {
 			rc = sidtab_context_to_sid(&sidtab, &c->context[0],
-<<<<<<< HEAD
-						   &c->sid[0]);
-=======
 						   &tmpsid);
 			c->sid[0] = tmpsid;
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 			if (rc)
 				goto out;
 		}
