@@ -266,6 +266,7 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 	int stored_pages = atomic_read(&zswap_stored_pages);
 #endif
 	unsigned long nr_cma_free;
+	struct reclaim_state *reclaim_state = current->reclaim_state;
 
 	if (nr_to_scan > 0) {
 		if (mutex_lock_interruptible(&scan_mutex) < 0)

@@ -1185,7 +1185,6 @@ err:
 	return ret;
 }
 #endif /* CONFIG_AUDIO_QUAT_I2S_ENABLE */
->>>>>>> 7cac4323d28535b6d4626b0f01cd4479e6cc9da5
 
 static int conf_int_codec_mux(struct msm8916_asoc_mach_data *pdata)
 {
